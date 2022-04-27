@@ -1,9 +1,12 @@
 import React from 'react';
 import {Grid,Typography} from "@material-ui/core";
-import {Box} from "@mui/material";
-import InstagramIcon from '@material-ui/icons/Instagram';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import FacebookIcon from '@material-ui/icons/Facebook';
+import {Box} from "@material-ui/core";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+
+
+
 
 function Footer(){
     return(
@@ -17,13 +20,13 @@ function Footer(){
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="center">
                             <a href="https://www.facebook.com/generationbrasil" target="_blank">
-                                <FacebookIcon style={{ fontSize: 60, color: "white" }} />
+                                 <FacebookIcon style={{ fontSize: 60, color: "white" }} /> 
                             </a>
                             <a href="https://www.instagram.com/generationbrasil/" target="_blank">
-                                <InstagramIcon style={{ fontSize: 60, color: "white" }} />
+                                 <InstagramIcon style={{ fontSize: 60, color: "white" }} /> 
                             </a>
                             <a href="https://www.linkedin.com/school/generationbrasil/" target="_blank">
-                                <LinkedInIcon style={{ fontSize: 60, color: "white" }} />
+                                 <LinkedInIcon style={{ fontSize: 60, color: "white" }} /> 
                             </a>
                         </Box>
                     </Box>
