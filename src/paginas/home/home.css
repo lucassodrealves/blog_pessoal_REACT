@@ -1,7 +1,3 @@
-.titulo{
-    color: #ff0011;
-    text-align:center;
-}
 
 .img{
     width:290px;
@@ -31,6 +27,26 @@ background:linear-gradient(36deg,#ff1199 8%,#ff9900 90%);
 }
 .form{
 width:230px;
+}
+
+.caixa{
+    background-color: #3F51B5!important
+}
+
+.titulo{
+    color: white!important;
+     font-weight: bold!important
+
+}
+
+.botao{
+    border-color: white!important;
+    background-color: #3F51B5!important;
+    color: white!important
+}
+
+.postagens{
+    background-color: "white"!important
 }
 
 
