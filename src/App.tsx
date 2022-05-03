@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './componentes/estaticos/navBar/NavBar';
 import Footer from './componentes/estaticos/footer/Footer';
 import Login from './paginas/login/Login';
+import CadastroUsuario from './paginas/cadastroUsuario/CadastroUsuario'
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
           <Route path="/" element={<Login/>}/>
           <Route path="/home" element={<Home/>}/> 
           <Route path="/login" element={<Login/>}/>
+          <Route path="/cadastrar" element={<CadastroUsuario/>}/>
 
 
         </Routes>

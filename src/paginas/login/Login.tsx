@@ -1,27 +1,74 @@
-import React from 'react';
+import React,{useState,useEffect, ChangeEvent} from 'react';
 import './Login.css';
 import { Grid, Box, Typography, TextField } from '@material-ui/core'
-import {Link} from 'react-router-dom';
-import {Button} from '@material-ui/core'
+import {Link,useNavigate} from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
+import {Button} from '@material-ui/core';
+import UsuarioLogin from '../../models/UsuarioLogin';
+import { login } from '../../services/Service';
 
 function Login() {
+
+    let history= useNavigate();
+    const[token,setToken]= useLocalStorage('token');
+
+const [usuarioLogin,setUsuarioLogin]= useState<UsuarioLogin>({
+    id:0,
+    usuario:'',
+    senha:'',
+    token:''
+
+})
+
+function updateModel(e:ChangeEvent<HTMLInputElement>){
+    setUsuarioLogin({
+        ...usuarioLogin,
+        [e.target.name]:e.target.value
+    })
+}
+
+useEffect(()=>{
+    if(token !== ''){
+        history.caller('/home')   
+    }
+},[token])
+
+
+
+
+
+
+async function logar(e:ChangeEvent<HTMLFormElement>){
+    e.preventDefault();
+    try{
+       await login(`/usuarios/logar`,usuarioLogin,setToken);
+        alert('Usuário logado com tranquilidade!')
+    }catch(error){
+        alert('Dados do usuário não consistentes.Erro ao tentar logar!');
+
+
+    }
+    // console.log('usuarioLogin:' +Object.values(usuarioLogin));
+}
+
+
     return (
         <Grid container direction='row' justifyContent='center' alignItems='center'  >
             <Grid item xs={6} alignItems='center'>
             <Box paddingX={20}>
 
-                    <form>
+                    <form onSubmit={logar}>
                         <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className='texto'>
                             Entrar
                         </Typography>
-                        <TextField variant='outlined' label='usuário' id='usuario' name='usuario' margin='normal' fullWidth />
-                        <TextField variant='outlined' label='senha' id='senha' name='senha' type='password' margin='normal' fullWidth />
+                        <TextField value={usuarioLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} variant='outlined' label='usuário' id='usuario' name='usuario' margin='normal' fullWidth />
+                        <TextField value={usuarioLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} variant='outlined' label='senha' id='senha' name='senha' type='password' margin='normal' fullWidth />
                         <Box marginTop={2} textAlign=' center'>
-                            <Link to='/home' className='text-decorator-none'>
+                            {/* <Link to='/home' className='text-decorator-none'> */}
                                <Button type='submit' variant='contained' color='primary'> 
                                    Logar
                                </Button>
-                            </Link>
+                            {/* </Link> */}
                         </Box>
                     </form>
                     <Box display='flex' justifyContent='center' marginTop={2}>
@@ -30,7 +77,9 @@ function Login() {
                                 ainda não tem conta queride?
                             </Typography>
                         </Box>
+                        <Link to='/cadastrar'>
                         <Typography variant='subtitle1' align='center' className='texto'>Cadastre-se</Typography>
+                        </Link>
                     </Box>
                            
                 </Box>
