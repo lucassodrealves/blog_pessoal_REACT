@@ -2,9 +2,11 @@ import React from 'react';
 import {Grid, Typography} from "@material-ui/core";
 import { Box } from '@material-ui/core';
 import './Home.css';
-import {Button} from "@material-ui/core"
+import {Button} from "@material-ui/core";
+import TabPostagem from '../../componentes/postagens/tabPostagem/TabPostagem'
 
 function Home(){
+   
     return(
         <>
     <Grid container direction="row" justifyContent="center" alignItems="center" className='caixa'>
@@ -23,6 +25,7 @@ function Home(){
                     <img src="https://i.imgur.com/H88yIo2.png" alt="" width="500px" height="500px" />
                 </Grid>
                 <Grid xs={12} className='postagens' >
+                    <TabPostagem/>
                 </Grid>
             </Grid>
        {/*<Paper>

@@ -6,7 +6,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './componentes/estaticos/navBar/NavBar';
 import Footer from './componentes/estaticos/footer/Footer';
 import Login from './paginas/login/Login';
-import CadastroUsuario from './paginas/cadastroUsuario/CadastroUsuario'
+import CadastroUsuario from './paginas/cadastroUsuario/CadastroUsuario';
+import ListaTema from './componentes/temas/listaTema/ListaTema';
+import ListaPostagem from './componentes/postagens/listaPostagem/ListaPostagem'
 
 
 
@@ -21,6 +23,8 @@ function App() {
           <Route path="/home" element={<Home/>}/> 
           <Route path="/login" element={<Login/>}/>
           <Route path="/cadastrar" element={<CadastroUsuario/>}/>
+          <Route path="/temas" element={<ListaTema/>}/>
+          <Route path="/postagens" element={<ListaPostagem/>}/>
 
 
         </Routes>

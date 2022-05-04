@@ -29,7 +29,7 @@ function updateModel(e:ChangeEvent<HTMLInputElement>){
 
 useEffect(()=>{
     if(token !== ''){
-        history.caller('/home')   
+        history('/home')   
     }
 },[token])
 

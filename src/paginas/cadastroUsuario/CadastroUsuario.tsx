@@ -40,8 +40,8 @@ function CadastroUsuario(){
     }
     
     useEffect(()=>{
-        if(usuarioResult.id != 0){
-            history.caller('/login')
+        if(usuarioResult.id !== 0){
+            history('/login')
         }
     },[usuarioResult])
     
@@ -52,9 +52,15 @@ function CadastroUsuario(){
     
     async function cadastrar(e:ChangeEvent<HTMLFormElement>){
         e.preventDefault();
-       if(confirmarSenha==usuarioCadastro.senha){
-            cadastroUsuario(`/usuarios/cadastrar`,usuarioCadastro,setUsuarioResult);
-            alert('Usuário cadastrado com tranquilidade!')
+       if(confirmarSenha==usuarioCadastro.senha && usuarioCadastro.senha.length>=8){
+
+            try{
+            await cadastroUsuario(`/usuarios/cadastrar`,usuarioCadastro,setUsuarioResult);
+            alert('Usuário cadastrado com tranquilidade!')}catch(error){
+                console.log(`Error:${error}`)
+                 alert("Usuário já existe!")
+
+            } 
     }
         else{
             alert('Dados do usuário não consistentes.Erro ao tentar cadastrar!');
@@ -79,11 +85,11 @@ function CadastroUsuario(){
                        Cadastre-se
                    </Typography>
 
-                   <TextField value={usuarioCadastro.nome} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} id='nome' label='nome' name='nome' variant='outlined' margin='normal' fullWidth/>
-                   <TextField value={usuarioCadastro.usuario} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} id='usuario' label='usuário' variant='outlined' name='usuario' margin='normal' fullWidth/>
-                   <TextField value={usuarioCadastro.foto} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} id='foto' label='foto' name='foto' variant='outlined' margin='normal' fullWidth/>
-                   <TextField value={usuarioCadastro.senha} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} type='password' id='senha' label='senha' variant='outlined' name='senha' margin='normal' fullWidth/>
-                   <TextField value={confirmarSenha} onChange={(e:ChangeEvent<HTMLInputElement>)=>confirmarSenhaHandle(e)} type='password' id='confirmarsenha' label='confirmar senha' variant='outlined' name='confirmarsenha' margin='normal' fullWidth/>
+                   <TextField value={usuarioCadastro.nome} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} id='nome' className='margin-bottom' label='nome' name='nome' variant='outlined' margin='normal' required fullWidth/>
+                   <TextField value={usuarioCadastro.usuario} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} id='usuario' label='usuário' variant='outlined' name='usuario' margin='normal' required placeholder='insira seu email' fullWidth/>
+                   <TextField value={usuarioCadastro.foto} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} id='foto' label='foto' name='foto' variant='outlined' margin='normal' placeholder='insira um link de uma foto' fullWidth/>
+                   <TextField value={usuarioCadastro.senha} onChange={(e:ChangeEvent<HTMLInputElement>)=>updateModel(e)} type='password' id='senha' label='senha' variant='outlined' name='senha' margin='normal' placeholder='insira uma senha de no mínimo oito digitos' required fullWidth/>
+                   <TextField value={confirmarSenha} onChange={(e:ChangeEvent<HTMLInputElement>)=>confirmarSenhaHandle(e)} type='password' id='confirmarsenha' label='confirmar senha' variant='outlined' name='confirmarsenha' required margin='normal' placeholder='repita a senha inserida' fullWidth/>
                      
                      <Box marginTop={2} textAlign='center'>
                    <Button type='submit' variant='contained' color='primary' className='button'>Cadastrar</Button>
