@@ -15,4 +15,35 @@ export const login = async(url:any,dados:any,setDados:any)=>{
 
 }
 
+export const busca=async(url:any,setDados:any,headers:any)=>{
+    const resposta=await api.get(url,headers)
+    setDados(resposta.data)
+
+}
+
+export const buscaId=async(url:any,setDados:any,headers:any)=>{
+    const resposta=await api.get(url,headers)
+    setDados(resposta.data)
+}
+
+export const cadastra=async(url:any,dados:any,setDados:any,headers:any)=>{
+     const resposta= await api.post(url,dados,headers)
+     setDados(resposta.data)
+
+}
+
+export const atualiza=async(url:any,dados:any,setDados:any,headers:any)=>{
+    const resposta=await api.put(url,dados,headers)
+    setDados(resposta.data)
+}
+
+export const deleta=async(url:any,headers:any)=>{
+     await api.delete(url,headers)
+}
+    
+
+
+
+
+
 

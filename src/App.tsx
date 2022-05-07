@@ -9,6 +9,10 @@ import Login from './paginas/login/Login';
 import CadastroUsuario from './paginas/cadastroUsuario/CadastroUsuario';
 import ListaTema from './componentes/temas/listaTema/ListaTema';
 import ListaPostagem from './componentes/postagens/listaPostagem/ListaPostagem'
+import CadastroTema from './componentes/temas/cadastroTema/CadastroTema';
+import DeletoTema from './componentes/temas/deletaTema/DeletoTema';
+import CadastroPostagem from './componentes/postagens/cadastroPostagem/CadastroPostagem'
+import DeletoPostagem from './componentes/postagens/deletaPostagem/DeletoPostagem'
 
 
 
@@ -25,7 +29,12 @@ function App() {
           <Route path="/cadastrar" element={<CadastroUsuario/>}/>
           <Route path="/temas" element={<ListaTema/>}/>
           <Route path="/postagens" element={<ListaPostagem/>}/>
-
+          <Route path="/formularioTema" element={<CadastroTema/>}/>
+          <Route path="/formularioTema/:id" element={<CadastroTema/>}/>
+          <Route path="/deletoTema/:id" element={<DeletoTema/>}/>
+          <Route path="/formularioPostagem" element={<CadastroPostagem/>}/>
+          <Route path="/formularioPostagem/:id"element={<CadastroPostagem/>}/>
+          <Route path="/deletoPostagem/:id" element={<DeletoPostagem/>}/>
 
         </Routes>
       </div>
