@@ -8,6 +8,8 @@ import { atualiza, busca, buscaId, cadastra } from '../../../services/Service';
 import Tema from '../../../models/Tema'
 import { TextFormatSharp } from '@material-ui/icons';
 import { isTemplateSpan } from 'typescript';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 
 
@@ -26,7 +28,12 @@ function CadastroPostagem(){
         tema:null
 
     })
-    const[token,setToken]=useLocalStorage('token')
+    
+    //const[token,setToken]=useLocalStorage('token')
+
+    const token=useSelector<TokenState,TokenState["tokens"]>(
+        (state)=>state.tokens
+    )
 
     function updatedModel(e:ChangeEvent<HTMLInputElement>){
         setPostagem({

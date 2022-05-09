@@ -6,11 +6,17 @@ import useLocalStorage from 'react-use-localstorage';
 import {Button} from '@material-ui/core';
 import UsuarioLogin from '../../models/UsuarioLogin';
 import { login } from '../../services/Service';
+import { Dispatch } from 'react';
+import { useDispatch } from 'react-redux';
+import {addToken} from '../../store/tokens/Actions'
+
 
 function Login() {
-
+    const dispatch =useDispatch();
     let history= useNavigate();
-    const[token,setToken]= useLocalStorage('token');
+   // const[token,setToken]= useLocalStorage('token');
+    const[token,setToken]=useState('')
+
 
 const [usuarioLogin,setUsuarioLogin]= useState<UsuarioLogin>({
     id:0,
@@ -28,6 +34,7 @@ function updateModel(e:ChangeEvent<HTMLInputElement>){
 }
 
 useEffect(()=>{
+    dispatch(addToken(token))
     if(token !== ''){
         history('/home')   
     }

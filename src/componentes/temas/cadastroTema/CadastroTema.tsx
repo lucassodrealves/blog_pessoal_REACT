@@ -6,6 +6,10 @@ import useLocalStorage from 'react-use-localstorage';
 import {useNavigate,useParams} from 'react-router-dom'
 import { atualiza, buscaId, cadastra } from '../../../services/Service';
 
+import {useSelector} from 'react-redux'
+import {TokenState} from '../../../store/tokens/tokensReducer'
+
+
 
 function CadastroTema(){
     let history=useNavigate()
@@ -15,7 +19,10 @@ function CadastroTema(){
          id:0,
          descricao:''
     })
-    const[token,setToken]=useLocalStorage('token')
+    //const[token,setToken]=useLocalStorage('token')
+    const token=useSelector<TokenState,TokenState["tokens"]>(
+        (state)=>state.tokens
+    )
 
 function updatedModel(e:ChangeEvent<HTMLInputElement>){
    setTema({
