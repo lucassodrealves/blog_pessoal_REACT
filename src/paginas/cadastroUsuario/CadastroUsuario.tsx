@@ -5,6 +5,7 @@ import {cadastroUsuario} from '../../services/Service'
 import './CadastroUsuario.css';
 import {Link, useNavigate} from 'react-router-dom'
 import { userInfo } from 'os';
+import { toast } from 'react-toastify';
 
 function CadastroUsuario(){
     let history= useNavigate();
@@ -56,14 +57,45 @@ function CadastroUsuario(){
 
             try{
             await cadastroUsuario(`/usuarios/cadastrar`,usuarioCadastro,setUsuarioResult);
-            alert('Usuário cadastrado com tranquilidade!')}catch(error){
+            toast.success('Usuário cadastrado com tranquilidade!',{
+                position:'top-right',
+                theme:'colored',
+                autoClose:1999,
+                pauseOnHover:false,
+                closeOnClick:true,
+                draggable:false,
+                progress:undefined
+
+
+            })}catch(error){
                 console.log(`Error:${error}`)
-                 alert("Usuário já existe!")
+                 toast.error("Usuário já existe!",{
+                     position:"top-center",
+                     autoClose:2222,
+                     pauseOnHover:true,
+                     hideProgressBar:false,
+                     closeOnClick:true,
+                     theme:'colored',
+                     progress:undefined,
+                     draggable:false
+
+                 })
 
             } 
     }
         else{
-            alert('Dados do usuário não consistentes.Erro ao tentar cadastrar!');
+            toast.error("Erro ao tentar cadastrar!Dados do usuário inconsistentes!",{
+                position:"top-center",
+                autoClose:2222,
+                pauseOnHover:true,
+                hideProgressBar:false,
+                closeOnClick:true,
+                theme:'colored',
+                progress:undefined,
+                draggable:false
+
+            })
+
     
     
         }

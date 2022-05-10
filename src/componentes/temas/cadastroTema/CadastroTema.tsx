@@ -8,6 +8,7 @@ import { atualiza, buscaId, cadastra } from '../../../services/Service';
 
 import {useSelector} from 'react-redux'
 import {TokenState} from '../../../store/tokens/tokensReducer'
+import {toast} from 'react-toastify'
 
 
 
@@ -33,7 +34,19 @@ function updatedModel(e:ChangeEvent<HTMLInputElement>){
 
 useEffect(()=>{
     if(token==''){
-        alert('Usuário não logado!')
+        toast.error('Usuário não logado!',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:1999,
+            pauseOnHover:false,
+            closeOnClick:true,
+            hideProgressBar:false,
+            progress:undefined,
+            draggable:false,
+
+
+        }
+        )
         history('/login')
     }
 },[token])
@@ -62,9 +75,29 @@ buscaId(`/temas/${id}`,setTema,{headers:{
          'Authorization':token
         }
      })
-     alert('Tema criado com tranquilidade!')
+     toast.success('Tema criado com tranquilidade!',{
+        position:'top-right',
+        theme:'colored',
+        autoClose:1222 ,
+        closeOnClick:true ,
+        pauseOnHover:false ,
+        draggable:false ,
+        progress:undefined
+
+
+    })
     }catch(error){
-        alert("Incorreção da inserção nos campos!")
+        toast.error('Tema não cadastrado!Erro na inserção dos campos',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:2222 ,
+            closeOnClick:true ,
+            pauseOnHover:true ,
+            draggable:false ,
+            progress:undefined
+
+
+        })
     }
     }
 
@@ -73,10 +106,30 @@ buscaId(`/temas/${id}`,setTema,{headers:{
         {
             'Authorization':token
         }})
-        alert('Tema atualizado')
+        toast.success('Tema atualizado!',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:1222 ,
+            closeOnClick:true ,
+            pauseOnHover:false ,
+            draggable:false ,
+            progress:undefined
+
+
+        })
       
      }catch(error){
-        alert("Incorreção da inserção nos campos!")
+        toast.error('Tema não atualizado!Verifique a quantidade de carácteres na inserção dos campos e tente novamente.',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:2222 ,
+            closeOnClick:true ,
+            pauseOnHover:true ,
+            draggable:false ,
+            progress:undefined
+
+
+        })
     }
     }
      pega()

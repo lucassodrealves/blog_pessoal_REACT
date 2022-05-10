@@ -15,12 +15,14 @@ import CadastroPostagem from './componentes/postagens/cadastroPostagem/CadastroP
 import DeletoPostagem from './componentes/postagens/deletaPostagem/DeletoPostagem'
 import {Provider} from 'react-redux'
 import store from './store/Store' 
-
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 function App() {
   return (
   <Provider store={store}>
+    <ToastContainer/>
     <Router>
       <NavBar/>
       <div style={{ minHeight: '100vh' }}>

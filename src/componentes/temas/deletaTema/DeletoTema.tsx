@@ -9,6 +9,7 @@ import Tema from '../../../models/Tema'
 
 import {useSelector} from 'react-redux'
 import {TokenState} from '../../../store/tokens/tokensReducer'
+import {toast} from 'react-toastify'
 
 
 
@@ -37,7 +38,19 @@ async function findById(){
 
 useEffect(()=>{
     if(token==''){
-        alert('usuário não logado!')
+        toast.error('Usuário não logado!',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:1999,
+            pauseOnHover:false,
+            closeOnClick:true,
+            hideProgressBar:false,
+            progress:undefined,
+            draggable:false,
+
+
+        }
+        )
         history('/login')
     }
 },[token])
@@ -48,7 +61,17 @@ async function sim(){
       'Authorization':token
       
     }})
-    alert('Tema deletado com sucesso!')
+     toast.success('Tema deletado com sucesso',{
+         position:"top-right",
+         theme:'colored',
+         autoClose:1222,
+         pauseOnHover:false,
+         closeOnClick:true,
+         draggable:false,
+         progress:undefined
+
+
+     })
 }
 
 async function n(){

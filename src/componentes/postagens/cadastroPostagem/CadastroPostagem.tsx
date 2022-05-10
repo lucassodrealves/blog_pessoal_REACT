@@ -10,6 +10,7 @@ import { TextFormatSharp } from '@material-ui/icons';
 import { isTemplateSpan } from 'typescript';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
+import {toast} from 'react-toastify'
 
 
 
@@ -47,7 +48,20 @@ function CadastroPostagem(){
 
     useEffect(()=>{
         if(token==''){
-            alert('usuário não logado!')
+            toast.error('Usuário não logado!',{
+                position:'top-right',
+                theme:'colored',
+                autoClose:1999,
+                pauseOnHover:false,
+                closeOnClick:true,
+                hideProgressBar:false,
+                progress:undefined,
+                draggable:false,
+
+
+            }
+            )
+
             history('/login')
         }
 
@@ -83,9 +97,30 @@ async  function getTemas(){
             try{await atualiza(`/postagens`,postagem,setPostagem,{headers:{
                 'Authorization':token
             }})
-            alert('Postagem atualizada!')
+            toast.success('Postagem atualizada',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:1222 ,
+            closeOnClick:true ,
+            pauseOnHover:false ,
+            draggable:false ,
+            progress:undefined
+
+
+        }
+            )
         }catch(error){
-                alert('Postagem não atualizada!Verifique a quantidade de carácteres na inserção dos campos e tente novamente.')
+                toast.error('Postagem não atualizada!Verifique a quantidade de carácteres na inserção dos campos e tente novamente.',{
+                    position:'top-right',
+                    theme:'colored',
+                    autoClose:2222 ,
+                    closeOnClick:true ,
+                    pauseOnHover:true ,
+                    draggable:false ,
+                    progress:undefined
+        
+
+                })
             }}
         
         else{
@@ -93,9 +128,30 @@ async  function getTemas(){
                 await cadastra(`/postagens`,postagem,setPostagem,{headers:{
                     'Authorization':token
                 }})
-                alert('Postagem cadastrada!')
+                toast.success('Postagem cadastrada!',{
+                    position:'top-right',
+                    theme:'colored',
+                    autoClose:1222 ,
+                    closeOnClick:true ,
+                    pauseOnHover:false ,
+                    draggable:false ,
+                    progress:undefined
+        
+        
+                })
             }catch(error){
-                alert('Postagem não cadastrada!Verifique a quantidade de carácteres na inserção dos campos e tente novamente.')
+                toast.error('Postagem não cadastrada!Verifique a quantidade de carácteres na inserção dos campos e tente novamente.',{
+                    position:'top-right',
+                    theme:'colored',
+                    autoClose:2222 ,
+                    closeOnClick:true ,
+                    pauseOnHover:true,
+                    draggable:false ,
+                    progress:undefined
+        
+
+                })
+               
             }
                
         }

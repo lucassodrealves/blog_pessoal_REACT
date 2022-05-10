@@ -6,6 +6,7 @@ import {useParams,useNavigate} from 'react-router-dom'
 import Postagem from '../../../models/Postagem'
 import { buscaId, deleta } from '../../../services/Service';
 import { useSelector } from 'react-redux';
+import {toast} from 'react-toastify'
 
 import  {TokenState}  from '../../../store/tokens/tokensReducer';
 function DeletoPostagem(){
@@ -20,7 +21,19 @@ function DeletoPostagem(){
 
 useEffect(()=>{
 if(token==''){
-    alert('usuário não logado!')
+    toast.error('Usuário não logado!',{
+        position:'top-right',
+        theme:'colored',
+        autoClose:1999,
+        pauseOnHover:false,
+        closeOnClick:true,
+        hideProgressBar:false,
+        draggable:false,
+        progress:undefined
+
+
+    }
+    )
     history('/login')
 }
 },[token]
@@ -42,8 +55,17 @@ async function sim(){
     deleta(`/postagens/${id}`,{headers:{
         'Authorization':token
     }})
-    alert('Postagem deletada com sucesso!')
+    toast.success('Postagem deletada com sucesso',{
+        position:"top-right",
+        theme:'colored',
+        autoClose:1222,
+        pauseOnHover:false,
+        closeOnClick:true,
+        draggable:false,
+        progress:undefined
 
+
+    })
 }
 
 async function n(){

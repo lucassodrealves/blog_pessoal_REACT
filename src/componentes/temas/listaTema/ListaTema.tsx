@@ -7,6 +7,7 @@ import useLocalStorage from 'react-use-localstorage'
 import { busca } from '../../../services/Service';
 import {useSelector} from 'react-redux'
 import {TokenState} from '../../../store/tokens/tokensReducer'
+import {toast} from 'react-toastify'
 
 function ListaTema(){
     const [listaTema,setListaTema]=useState<Tema[]>([])
@@ -27,7 +28,19 @@ function ListaTema(){
 
     useEffect(()=>{
        if(token===''){
-           alert("Você não está logado!")
+        toast.error('Usuário não logado!',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:1999,
+            pauseOnHover:false,
+            closeOnClick:true,
+            hideProgressBar:false,
+            progress:undefined,
+            draggable:false,
+
+
+        }
+        )
            history('/login')
        }
     },[token])

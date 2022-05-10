@@ -9,6 +9,7 @@ import { login } from '../../services/Service';
 import { Dispatch } from 'react';
 import { useDispatch } from 'react-redux';
 import {addToken} from '../../store/tokens/Actions'
+import { toast } from 'react-toastify';
 
 
 function Login() {
@@ -49,10 +50,27 @@ async function logar(e:ChangeEvent<HTMLFormElement>){
     e.preventDefault();
     try{
        await login(`/usuarios/logar`,usuarioLogin,setToken);
-        alert('Usuário logado com tranquilidade!')
-    }catch(error){
-        alert('Dados do usuário não consistentes.Erro ao tentar logar!');
+       toast.success('Usuário logado com tranquilidade!',{
+        position:'top-right',
+        theme:'colored',
+        autoClose:1999,
+        pauseOnHover:false,
+        closeOnClick:true,
+        draggable:false,
+        progress:undefined
 
+
+    })
+    }catch(error){
+        toast.error('Usuário não logado!Dados inseridos inconsistentes!',{
+            position:'top-center',
+            autoClose:2999,
+            pauseOnHover:false,
+            draggable:false,
+            closeOnClick:true,
+            hideProgressBar:false,
+            theme:'colored'
+        })
 
     }
     // console.log('usuarioLogin:' +Object.values(usuarioLogin));

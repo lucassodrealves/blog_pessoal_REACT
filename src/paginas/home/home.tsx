@@ -9,6 +9,7 @@ import { useNavigate,Link } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../store/tokens/tokensReducer';
+import {toast} from 'react-toastify'
 
 function Home(){
 let history=useNavigate()
@@ -20,7 +21,17 @@ const token=useSelector<TokenState,TokenState["tokens"]>(
 
 useEffect(()=>{
     if(token==''){
-        alert('usuário não logado"')
+        toast.error('Usuário não logado!',{
+            position:'top-right',
+            theme:'colored',
+            autoClose:1999,
+            pauseOnHover:false,
+            closeOnClick:true,
+            hideProgressBar:false,
+            progress:undefined
+    
+        }
+        )
         history("/login")
     }},[token])
 function postagens(){
