@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.css';//
 import { Grid } from "@material-ui/core"
 import Home from './paginas/Home/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
