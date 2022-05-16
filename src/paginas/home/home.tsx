@@ -6,14 +6,13 @@ import {Button} from "@material-ui/core";
 import TabPostagem from '../../componentes/postagens/tabPostagem/TabPostagem'
 import ModalPostagem from '../../componentes/postagens/modalPostagem/ModalPostagem';
 import { useNavigate,Link } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../store/tokens/tokensReducer';
 import {toast} from 'react-toastify'
 
 function Home(){
 let history=useNavigate()
-//const[token,setToken]=useLocalStorage('token')
+
 
 const token=useSelector<TokenState,TokenState["tokens"]>(
     (state)=>state.tokens
@@ -60,23 +59,7 @@ function postagens(){
                     <TabPostagem/>
                 </Grid>
             </Grid>
-       {/*<Paper>
-            <Box p={2}>
-                <Box display="flex" justifyContent="center">
-                    <h1>Títulão!</h1>
-
-                </Box>
-                <img src="https://i.imgur.com/0FQHhqx.jpeg" alt="l. de tapetes" style={{width:"100%", height:"100%"}}/>
-
             
-                <Box display="flex" justifyContent="center">
-                 <
-                      Button variant="contained" color="primary">Boão um</Button>
-                 <Button variant="contained" color="secondary">Boão dois</Button>
-                </Box>
-                </Box>
-
-    </Paper>*/}
      
      </>
       
