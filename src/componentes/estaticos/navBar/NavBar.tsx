@@ -37,7 +37,6 @@ function NavBar(){
          theme:'light',
          progress:undefined
 
-
      }
 
      )
